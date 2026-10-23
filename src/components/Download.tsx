@@ -129,11 +129,11 @@ function VerifyPanel() {
                 ? "This release is code-signed, so Windows should open it without a warning."
                 : "This early release isn't code-signed yet, so SmartScreen may show a warning. If the checksum matches, choose More info, then Run anyway."}
             </p>
-            <h4 className="mt-5 font-bold">macOS says the app "can't be opened"</h4>
+            <h4 className="mt-5 font-bold">macOS says the app is from an "unidentified developer" or is "damaged"</h4>
             <p className="mt-1 text-sm text-secondary">
               {RELEASE.signed.mac
                 ? "This release is signed and notarized by Apple, so it should open normally."
-                : "This early release isn't notarized by Apple yet, so Gatekeeper may block it the first time. If the checksum matches, open System Settings, go to Privacy & Security, and choose Open Anyway for TensorLoom."}
+                : "This early release isn't signed or notarized by Apple yet, so Gatekeeper will block it the first time. If the checksum matches, right-click TensorLoom in Applications and choose Open, or open System Settings, go to Privacy & Security, and choose Open Anyway."}
             </p>
             <p className="mt-4 text-sm text-secondary">
               Release pages:{" "}

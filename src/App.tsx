@@ -111,10 +111,10 @@ function Features() {
         <p className="eyebrow">Export &amp; test</p>
         <h3 className="mt-2 text-xl font-bold">Keep your model</h3>
         <p className="mt-2 text-[.95rem] text-secondary">
-          Save the trained model as <code>.json</code> or <code>.bin</code>, then load it back to predict single rows or score a whole CSV.
+          Save the trained model as <code>.json</code>, <code>.bin</code> or <code>.onnx</code>, then load it back to predict single rows or score a whole CSV.
         </p>
         <motion.div variants={stagger(0.07, 0.3)} className="mt-5 flex flex-wrap gap-2.5">
-          {[".json", ".bin", "MSE", "R²"].map((c) => (
+          {[".json", ".bin", ".onnx"].map((c) => (
             <motion.span key={c} variants={{ hidden: { opacity: 0, scale: 0.7 }, show: { opacity: 1, scale: 1, transition: { type: "spring", stiffness: 300, damping: 16 } } }} className="neo-chip">
               {c}
             </motion.span>
