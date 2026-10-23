@@ -1,6 +1,6 @@
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useState, type ReactNode } from "react";
-import { RELEASE, downloadUrl, OS_NAME, type DownloadFile, type OS } from "../release";
+import { RELEASE, downloadUrl, releasePage, OS_NAME, type DownloadFile, type OS } from "../release";
 import { fadeUp, stagger, inView, ease } from "../motion";
 import { AppleIcon, DownloadArrow, WindowsIcon } from "./Icons";
 
@@ -129,6 +129,21 @@ function VerifyPanel() {
                 ? "This release is code-signed, so Windows should open it without a warning."
                 : "This early release isn't code-signed yet, so SmartScreen may show a warning. If the checksum matches, choose More info, then Run anyway."}
             </p>
+            <h4 className="mt-5 font-bold">macOS says the app "can't be opened"</h4>
+            <p className="mt-1 text-sm text-secondary">
+              {RELEASE.signed.mac
+                ? "This release is signed and notarized by Apple, so it should open normally."
+                : "This early release isn't notarized by Apple yet, so Gatekeeper may block it the first time. If the checksum matches, open System Settings, go to Privacy & Security, and choose Open Anyway for TensorLoom."}
+            </p>
+            <p className="mt-4 text-sm text-secondary">
+              Release pages:{" "}
+              {[...RELEASE.files.windows, ...RELEASE.files.mac].map((f, i) => (
+                <span key={f.file}>
+                  {i > 0 && " \u00b7 "}
+                  <a href={releasePage(f)} target="_blank" rel="noopener noreferrer">{f.file.endsWith(".dmg") ? "macOS" : "Windows"} ({f.tag})</a>
+                </span>
+              ))}
+            </p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -146,7 +161,7 @@ export default function Download({ os }: { os: OS }) {
       </motion.header>
       <div className="grid gap-5 md:grid-cols-2">
         <OsCard os="windows" name={OS_NAME.windows} req="Windows 10 or 11, 64-bit" icon={<WindowsIcon />} files={RELEASE.files.windows} current={os === "windows"} />
-        <OsCard os="mac" name={OS_NAME.mac} req="Apple silicon and Intel" icon={<AppleIcon />} files={RELEASE.files.mac} current={os === "mac"} />
+        <OsCard os="mac" name={OS_NAME.mac} req="macOS on Apple silicon (M1 and newer)" icon={<AppleIcon />} files={RELEASE.files.mac} current={os === "mac"} />
       </div>
       <VerifyPanel />
     </motion.section>
