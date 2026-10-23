@@ -14,7 +14,7 @@ function FileButton({ f }: { f: DownloadFile }) {
       whileTap={{ scale: 0.98 }}
       className={`${f.primary ? "neo-btn" : "neo-btn-ghost"} w-full flex-wrap justify-between px-5 py-4 text-left no-underline`}
     >
-      <span className="flex items-center gap-2"><DownloadArrow />{f.label}</span>
+      <span className="flex items-center gap-2"><DownloadArrow />{f.label}{f.prerelease && <span className="rounded-full bg-white/25 px-2 py-0.5 text-[.7rem] font-bold uppercase tracking-wide">Pre-release</span>}</span>
       <span className="text-xs font-medium opacity-85">{[f.note, f.size].filter(Boolean).join(" \u00b7 ")}</span>
     </motion.a>
   );

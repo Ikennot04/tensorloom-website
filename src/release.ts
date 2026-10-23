@@ -9,6 +9,7 @@ export type DownloadFile = {
   size: string;
   sha256: string;
   primary?: boolean;
+  prerelease?: boolean; // shown as a "Pre-release" tag
 };
 
 export const RELEASE = {
@@ -36,6 +37,7 @@ export const RELEASE = {
         size: "14.2 MB",
         sha256: "d5113625eb118377d3797813e35fbed702cd9daa372e001dbd53a16c2882a8f0",
         primary: true,
+        prerelease: true,
       },
     ] as DownloadFile[],
   },
